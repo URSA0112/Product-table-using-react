@@ -1,0 +1,57 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+
+#menucontainer {
+  background-color: rgb(5, 40, 40, 0.3);
+  justify-self: center;
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  grid-template-rows: repeat(2, auto);
+}
+
+.cardcontainer {
+  background-color: antiquewhite;
+  width: 440px;
+  height: 374px;
+  margin: 40px 20px;
+}
+
+h1 {
+  justify-self: center;
+  margin-top: 10vh;
+}
+.category {
+  background-color: #351b1a;
+  width: 416px;
+  height: 43px;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+}
+p{
+margin:0;
+  font-size: 20px;
+  color: #957a7c;
+}
+.foodscontainer {
+  display: grid;
+  gap: 16px;
+  grid-template-rows: repeat(3, 93px);
+}
+.eachFood {
+
+  height: 93px;
+  display: block;
+
+}
+.nameAndprice {
+  display: flex;
+  justify-content: space-between;
+  font-size: 16px;
+  font-weight: 700;
+  margin: 12px;
+}
+.foodinfo {
+  font-size: 16px;
+  font-weight: 400;
+  margin: 12px;
+}
