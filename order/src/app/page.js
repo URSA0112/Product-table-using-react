@@ -14,7 +14,7 @@ function Searchbar() {
   );
 }
 
-function Product(props) {  
+function Product(props) {
 
 
   return (
@@ -26,36 +26,43 @@ function Product(props) {
 }
 
 function Products(props) {
-  //const eachproductname = props.product.map((each)=>{return each.name})
-  //const eachproductprice = props.product.map((each)=>{return each.price})
-
+  // Products props : 1)props.productsList
+console.log(props.productsList)
   return (
     <div className="products">
-      <Product></Product>
+     <Product></Product>
     </div>
   );
 }
 
 function Category(props) {
-const eachcategory = props.info.map((each)=>{return each.categoryTitle})
-//const eachproducts = props.productsdata.map((each)=>{return each.products})
+  // Category props : 1) props.key , 2)props.title, 3)props.products 
+  // <Products> --> -d props bas uguh heregtei shuu !!! door baiga
   return (
     <div>
       <div className="category">
-        <div className="category-title">{eachcategory}</div>
-        <Products></Products>
+        <div className="category-title">{props.title}</div>
+        <Products productsList={props.products}></Products>
       </div>
     </div>
   );
 }
 
 function CategoriesContainer(props) {
-console.log(props)
+  // IF used for loop
+  // const eachcategory = [];
+  //for(let i =0; i<props.data.length;i++){
+  // eachcategory.push(<Category each ={props.data[i]}></Category>)
+  // console.log(eachcategory)
+  //}
 
   return (
     <div>
       <div className="categories-container">
-        <Category info= {props.productsdata} ></Category>
+        {/* used map */}
+        {props.data.map((each) => (
+          <Category key={each.id} title={each.categoryTitle} productList={each.products} />
+        ))}
       </div>
     </div>
   );
@@ -65,22 +72,26 @@ console.log(props)
 export default function Home() {
   const data = [
     {
+      id: 1,
       categoryTitle: "vegatables",
       products: [{ name: "pomi", price: 21 }],
     },
     {
+      id: 2,
       categoryTitle: "fruits",
       products: [{ name: "Apple", price: 11 }],
     },
     {
-      categoryTitle: "fruits",
-      products: [{ name: "Apple", price: 11 }],
-    },
+      id: 3,
+      categoryTitle: "burgers",
+      products: [{ name: "cheese", price: 11 }],
+    }
+
   ];
   return (
     <div className="main-section">
       <Searchbar></Searchbar>
-      <CategoriesContainer productsdata={data}></CategoriesContainer>
+      <CategoriesContainer data={data}></CategoriesContainer>
     </div>
   );
 }
