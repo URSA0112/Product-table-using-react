@@ -1,57 +1,5 @@
 import Image from "next/image";
 
-const data = [
-  {},
-  {
-    categoryTitle: "fruits",
-    products: [{ name: "Apple", price: 11 }],
-  },
-
-];
-
-function Product(props) {
-  return (
-    <div className="product-container">
-      <p className="product-name">{props.product}</p>
-      <p className="product-price"></p>
-    </div>
-  );
-}
-
-function Products() { 
-  const datas = data.map((dat)=>dat)
-   const productss = datas.products.map((each)=>each.name)
-  return (
-  <div className="products">
-    <Product product = {productss}></Product>
-  </div>
-);
-}
-
-function Category(props) {
-  return (
-    <div>
-      <div className="category">
-        <div className="category-title">{props.title.categoryTitle}</div>
-        <Products></Products>
-      </div>
-    </div>
-  );
-}
-
-function CategoriesContainer() {
-  const Title = [];
- 
-  for (let i = 0; i < data.length; i++)
-    Title.push(<Category title={data[i]}></Category>); 
-
-  return (
-    <div>
-      <div className="categories-container">{Title}</div>
-    </div>
-  );
-}
-
 function Searchbar() {
   return (
     <div>
@@ -66,11 +14,73 @@ function Searchbar() {
   );
 }
 
+function Product(props) {  
+
+
+  return (
+    <div className="product-container">
+      <p className="product-name"></p>
+      <p className="product-price"></p>
+    </div>
+  );
+}
+
+function Products(props) {
+  //const eachproductname = props.product.map((each)=>{return each.name})
+  //const eachproductprice = props.product.map((each)=>{return each.price})
+
+  return (
+    <div className="products">
+      <Product></Product>
+    </div>
+  );
+}
+
+function Category(props) {
+const eachcategory = props.info.map((each)=>{return each.categoryTitle})
+//const eachproducts = props.productsdata.map((each)=>{return each.products})
+  return (
+    <div>
+      <div className="category">
+        <div className="category-title">{eachcategory}</div>
+        <Products></Products>
+      </div>
+    </div>
+  );
+}
+
+function CategoriesContainer(props) {
+console.log(props)
+
+  return (
+    <div>
+      <div className="categories-container">
+        <Category info= {props.productsdata} ></Category>
+      </div>
+    </div>
+  );
+}
+
+
 export default function Home() {
+  const data = [
+    {
+      categoryTitle: "vegatables",
+      products: [{ name: "pomi", price: 21 }],
+    },
+    {
+      categoryTitle: "fruits",
+      products: [{ name: "Apple", price: 11 }],
+    },
+    {
+      categoryTitle: "fruits",
+      products: [{ name: "Apple", price: 11 }],
+    },
+  ];
   return (
     <div className="main-section">
       <Searchbar></Searchbar>
-      <CategoriesContainer></CategoriesContainer>
+      <CategoriesContainer productsdata={data}></CategoriesContainer>
     </div>
   );
 }
