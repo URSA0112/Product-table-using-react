@@ -1,62 +1,76 @@
 import Image from "next/image";
 
-function Category(){
-  return(
-    <div className="category">
-        <p>salad</p>
-      </div>
-  )
-}
+const data = [
+  {},
+  {
+    categoryTitle: "fruits",
+    products: [{ name: "Apple", price: 11 }],
+  },
 
-function Foodscontainer(){
-  return(
-    <div className="foodscontainer">
-    <div className="eachFood">
-      <div className="nameAndprice">
-        <div id="foodName">boortsog</div>
-        <div id="foodPrice">500</div>
-      </div>
-      <div className="foodinfo">hellos</div>
-    </div>
-    <div className="eachFood">
-      <div className="nameAndprice">
-        <div id="foodName">boortsog</div>
-        <div id="foodPrice">500</div>
-      </div>
-      <div className="foodinfo">info</div>
-    </div>
-    <div className="eachFood">
-      <div className="nameAndprice">
-        <div id="foodName">boortsog</div>
-        <div id="foodPrice">500</div>
-      </div>
-      <div className="foodinfo">helo</div>
-    </div>
-    </div>
-  )
-}
+];
 
-function Cards() {
+function Product(props) {
   return (
-    <div className="cardcontainer" id="card1">
-     <Category></Category>
-     <Foodscontainer></Foodscontainer>
+    <div className="product-container">
+      <p className="product-name">{props.product}</p>
+      <p className="product-price"></p>
     </div>
-       
   );
 }
 
-function Menu() {
+function Products() { 
+  const datas = data.map((dat)=>dat)
+   const productss = datas.products.map((each)=>each.name)
+  return (
+  <div className="products">
+    <Product product = {productss}></Product>
+  </div>
+);
+}
+
+function Category(props) {
   return (
     <div>
-      <h1>pranzo</h1>
-      <div id="menucontainer">
-        <Cards></Cards>
+      <div className="category">
+        <div className="category-title">{props.title.categoryTitle}</div>
+        <Products></Products>
+      </div>
+    </div>
+  );
+}
+
+function CategoriesContainer() {
+  const Title = [];
+ 
+  for (let i = 0; i < data.length; i++)
+    Title.push(<Category title={data[i]}></Category>); 
+
+  return (
+    <div>
+      <div className="categories-container">{Title}</div>
+    </div>
+  );
+}
+
+function Searchbar() {
+  return (
+    <div>
+      <div className="searchbar-container">
+        <input type="text" id="text"></input>
+        <div id="check-container">
+          <input type="checkbox" id="checkbox"></input>
+          <p>Only show products in stock</p>
+        </div>
       </div>
     </div>
   );
 }
 
 export default function Home() {
-  return <Menu></Menu>;
+  return (
+    <div className="main-section">
+      <Searchbar></Searchbar>
+      <CategoriesContainer></CategoriesContainer>
+    </div>
+  );
 }
