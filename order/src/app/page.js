@@ -15,34 +15,38 @@ function Searchbar() {
 }
 
 function Product(props) {
-
+    // !!!Product props : 1)props.productname 2)props.productprice
+  console.log(props)
 
   return (
     <div className="product-container">
-      <p className="product-name"></p>
-      <p className="product-price"></p>
+      <p className="product-name">{props.productname}</p>
+      <p className="product-price">$ {props.productprice}</p>
     </div>
   );
 }
 
 function Products(props) {
-  // Products props : 1)props.productsList
-console.log(props.productsList)
+  // Products props : 1)props.products
+  //console.log(props.products)
+
   return (
     <div className="products">
-     <Product></Product>
+      {props.products.map((each) => (
+        <Product productname={each.name} productprice={each.price}></Product>))}
     </div>
   );
 }
 
 function Category(props) {
-  // Category props : 1) props.key , 2)props.title, 3)props.products 
+  // Category props : 1) props.key , 2)props.title, 3)props.productList
   // <Products> --> -d props bas uguh heregtei shuu !!! door baiga
+
   return (
     <div>
       <div className="category">
         <div className="category-title">{props.title}</div>
-        <Products productsList={props.products}></Products>
+        <Products products={props.productList}></Products>
       </div>
     </div>
   );
@@ -83,8 +87,17 @@ export default function Home() {
     },
     {
       id: 3,
-      categoryTitle: "burgers",
-      products: [{ name: "cheese", price: 11 }],
+      categoryTitle: "burger",
+      products: [{ name: "cheese", price: 11 },
+        { name: "cheicken", price: 30 }
+      ],
+    },
+    {
+      id: 4,
+      categoryTitle: "pizza",
+      products: [{ name: "pepperoni", price: 11 },
+        { name: "pineapple", price: 30 }
+      ],
     }
 
   ];
