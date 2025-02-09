@@ -92,13 +92,7 @@ export default function Home() {
         { name: "cheicken", price: 30 }
       ],
     },
-    {
-      id: 4,
-      categoryTitle: "pizza",
-      products: [{ name: "pepperoni", price: 11 },
-        { name: "pineapple", price: 30 }
-      ],
-    }
+ 
 
   ];
   return (
